@@ -6,11 +6,13 @@ import { useAuthStore } from './authStore'
 export const useProfileStore = defineStore('profileStoreId', () => {
   const email = ref('')
   const name = ref('')
+  const password = ref('') //enlever potentiellement
   const onError = ref(false)
 
-  function _initializeProfile(profile: { email: string; name: string }) {
+  function _initializeProfile(profile: { email: string; name: string; password: string }) {
     email.value = profile.email
     name.value = profile.name
+    password.value = profile.password
     onError.value = false
   }
 
@@ -26,10 +28,24 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     }
   }
 
-  return { 
-    email, 
-    name, 
-    onError, 
-    getProfile 
+  async function updatePassword(newPassword: string) {
+    try {
+      onError.value = false
+      const authStore = useAuthStore()
+      const userId = authStore.getUserId
+      await userService.updateUserPassword(userId, newPassword)
+      password.value = newPassword
+    } catch (error) {
+      onError.value = true
+    }
+  }
+
+  return {
+    email,
+    name,
+    password,
+    onError,
+    getProfile,
+    updatePassword
   }
 })
