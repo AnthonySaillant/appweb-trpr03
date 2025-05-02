@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Clash';
+  src: url('../assets/fonts/Clash_regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Clash', sans-serif;
+}
