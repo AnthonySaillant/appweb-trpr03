@@ -35,6 +35,8 @@ onMounted(async () => {
     confirm("Erreur critique lors de l'accès au store.")
   }
 })
+
+const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
 </script>
 
 <template>
@@ -55,16 +57,19 @@ onMounted(async () => {
           v-model="newPassword"
           :rules="isRequired"
         />
+        <ErrorMessage class="text-danger" name="password-input" />
       </div>
       <div class="mb-3">
-        <label for="password-validation" class="form-label">Confirmer le mot de passe</label>
-        <input
-          type="password"
-          id="password-validation"
-          v-model="newPasswordValidation"
+        <label for="password-validation-input" class="form-label">Confirmer le mot de passe</label>
+        <Field
           class="form-control"
-          required
+          id="password-validation-input"
+          name="password-validation-input"
+          type="password"
+          v-model="newPasswordValidation"
+          :rules="isRequired"
         />
+        <ErrorMessage class="text-danger" name="password-validation-input" />
       </div>
       <button type="submit" class="btn btn-primary">Mettre à jour</button>
     </form>

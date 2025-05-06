@@ -27,7 +27,7 @@ describe('Récits utilisateur', () => {
     cy.visit('/')
 
     // On vérifie que la page contient, dans une balise H1, le texte "Accueil"
-    cy.contains('h1', /accueil/i)
+    cy.contains('.welcome_text', /Bienvenue!/i)
   })
 
   it('je peux accéder à la page à propos', () => {
