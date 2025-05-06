@@ -50,7 +50,8 @@ export const useAuthStore = defineStore('authStoreId', () => {
         localStorage.setItem('token', token.value)
       }
     } catch (error: any) {
-      authServiceError.value = error.message || 'Unknown error'
+      const rawMessage = error.message || 'Unknown error'
+      authServiceError.value = translateErrorMessage(rawMessage)
     }
   }
 
@@ -71,3 +72,16 @@ export const useAuthStore = defineStore('authStoreId', () => {
     refreshToken
   }
 })
+function translateErrorMessage(rawMessage: string): string {
+  //utilisation de chat GPT pour la traduction d'erreur serveur
+  switch (rawMessage) {
+    case 'Email format is invalid':
+      return "Le format d\'email est invalide"
+    case 'Password is too short':
+      return 'Le mot de passe est trop court'
+    case 'Incorrect password':
+      return 'Le mot de passe est incorrect'
+    default:
+      return 'Une erreur est survenu'
+  }
+}
