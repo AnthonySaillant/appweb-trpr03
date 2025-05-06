@@ -60,7 +60,7 @@ const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
     >
       <div class="form-container">
         <h1 class="d-flex align-items-center gap-3">
-          Courriel
+          Connexion
           <img :src="crown" alt="cr_crown" style="width: 7%" />
         </h1>
 

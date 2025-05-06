@@ -64,4 +64,11 @@ function logout() {
     </div>
   </nav>
 </template>
-<style></style>
+<style>
+.nav-link.active {
+  color: white !important;
+}
+.nav-link:hover {
+  color: #ffffff !important;
+}
+</style>
