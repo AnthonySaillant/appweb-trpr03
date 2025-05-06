@@ -19,6 +19,7 @@ const updatePassword = async () => {
     await profileStore.updatePassword(newPassword.value)
     alert('Mot de passe mis à jour avec succès.')
     newPassword.value = ''
+    newPasswordValidation.value = ''
   } catch (error) {
     alert('Échec de la mise à jour du mot de passe.')
   }
@@ -46,33 +47,41 @@ const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
     <div>Courriel: {{ email }}</div>
 
     <h2 class="mt-4">Changer le mot de passe</h2>
-    <form @submit.prevent="updatePassword">
-      <div class="mb-3">
-        <label for="password-input" class="form-label">Nouveau mot de passe</label>
-        <Field
-          class="form-control"
-          id="password-input"
-          name="password-input"
-          type="password"
-          v-model="newPassword"
-          :rules="isRequired"
-        />
-        <ErrorMessage class="text-danger" name="password-input" />
+
+    <!-- Container for layout -->
+    <div class="d-flex">
+      <div class="w-50">
+        <Form @submit="updatePassword">
+          <div class="mb-3">
+            <label for="password-input" class="form-label">Nouveau mot de passe</label>
+            <Field
+              class="form-control"
+              id="password-input"
+              name="password-input"
+              type="password"
+              v-model="newPassword"
+              :rules="isRequired"
+            />
+            <ErrorMessage class="text-danger" name="password-input" />
+          </div>
+          <div class="mb-3">
+            <label for="password-validation-input" class="form-label"
+              >Confirmer le mot de passe</label
+            >
+            <Field
+              class="form-control"
+              id="password-validation-input"
+              name="password-validation-input"
+              type="password"
+              v-model="newPasswordValidation"
+              :rules="isRequired"
+            />
+            <ErrorMessage class="text-danger" name="password-validation-input" />
+          </div>
+          <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </Form>
       </div>
-      <div class="mb-3">
-        <label for="password-validation-input" class="form-label">Confirmer le mot de passe</label>
-        <Field
-          class="form-control"
-          id="password-validation-input"
-          name="password-validation-input"
-          type="password"
-          v-model="newPasswordValidation"
-          :rules="isRequired"
-        />
-        <ErrorMessage class="text-danger" name="password-validation-input" />
-      </div>
-      <button type="submit" class="btn btn-primary">Mettre à jour</button>
-    </form>
+    </div>
   </div>
 </template>
 
