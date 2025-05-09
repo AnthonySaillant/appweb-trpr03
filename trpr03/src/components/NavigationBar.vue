@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAuthStore } from '../stores/authStore'
+import { useProfileStore } from '../stores/profileStore'
 import { useRouter } from 'vue-router'
+import { is } from '@vee-validate/rules'
 
 const authStore = useAuthStore()
+const profileStore = useProfileStore()
 const router = useRouter()
 
 const isLoggedIn = computed(() => authStore.isLoggedIn)
+const isDev = computed(() => profileStore.isDev)
 
 function logout() {
   authStore.logout()
@@ -44,6 +48,15 @@ function logout() {
           :to="{ name: 'Profile' }"
         >
           Profile
+        </RouterLink>
+
+        <RouterLink
+          class="nav-link text-warning"
+          :class="{ active: $route.name == 'TesterManager' }"
+          v-if="isLoggedIn && isDev"
+          :to="{ name: 'TesterManager' }"
+        >
+          Gestion des testeurs
         </RouterLink>
       </div>
       <div class="d-flex">

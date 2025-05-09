@@ -8,11 +8,18 @@ export const useProfileStore = defineStore('profileStoreId', () => {
   const name = ref('')
   const password = ref('') //enlever potentiellement
   const onError = ref(false)
+  const isDev = ref(false)
 
-  function _initializeProfile(profile: { email: string; name: string; password: string }) {
+  function _initializeProfile(profile: {
+    email: string
+    name: string
+    password: string
+    isDev: boolean
+  }) {
     email.value = profile.email
     name.value = profile.name
     password.value = profile.password
+    isDev.value = profile.isDev
     onError.value = false
   }
 
@@ -46,6 +53,7 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     password,
     onError,
     getProfile,
-    updatePassword
+    updatePassword,
+    isDev
   }
 })

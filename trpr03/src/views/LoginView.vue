@@ -49,7 +49,7 @@ const backgroundStyle = {
 }
 
 // Fonction pour vérifier si un champ est vide, utilisée dans les règles de vee-validate
-const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
+const isRequired = (value: any) => (!value ? 'Ce champ est requis.' : true)
 </script>
 
 <template>

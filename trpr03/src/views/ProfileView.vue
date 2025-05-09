@@ -10,16 +10,21 @@ const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
+const isDev = computed(() => profileStore.isDev)
 const newPassword = ref('')
 const newPasswordValidation = ref('')
 const onError = computed(() => profileStore.onError)
 
 const updatePassword = async () => {
   try {
-    await profileStore.updatePassword(newPassword.value)
-    alert('Mot de passe mis à jour avec succès.')
-    newPassword.value = ''
-    newPasswordValidation.value = ''
+    if (newPassword.value == newPasswordValidation.value) {
+      await profileStore.updatePassword(newPassword.value)
+      alert('Mot de passe mis à jour avec succès.')
+      newPassword.value = ''
+      newPasswordValidation.value = ''
+    } else {
+      alert('Échec de la validation du mot de passe')
+    }
   } catch (error) {
     alert('Échec de la mise à jour du mot de passe.')
   }
@@ -37,7 +42,7 @@ onMounted(async () => {
   }
 })
 
-const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
+const isRequired = (value: any) => (!value ? 'Ce champ est requis.' : true)
 </script>
 
 <template>
@@ -45,10 +50,10 @@ const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
     <h1>Profile</h1>
     <div>Nom: {{ name }}</div>
     <div>Courriel: {{ email }}</div>
+    <div>IsDev: {{ isDev }}</div>
 
     <h2 class="mt-4">Changer le mot de passe</h2>
 
-    <!-- Container for layout -->
     <div class="d-flex">
       <div class="w-50">
         <Form @submit="updatePassword">

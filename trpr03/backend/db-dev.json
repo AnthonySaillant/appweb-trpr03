@@ -2,9 +2,17 @@
   "users": [
     {
       "email": "test@test.com",
-      "password": "$2a$10$Nv3ElDM/Kk7X9zLQ915oFOAdbr29i96OK9B1nVokNb/EvmUkXogmS",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Emmett Brown",
+      "isDev": false,
       "id": 1
+    },
+    {
+      "email": "dev@dev.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Dev leDev",
+      "isDev": true,
+      "id": 2
     }
   ],
   "comments": [
