@@ -16,6 +16,15 @@ async function getUserById(userId) {
   }
 }
 
+async function getAllUsers() {
+  try {
+    const response = await axiosAuth.get('http://127.0.0.1:3000/users')
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
 async function updateUserPassword(userId, newPassword) {
   try {
     const response = await axiosAuth.patch(`http://127.0.0.1:3000/users/${userId}`, {
@@ -29,5 +38,6 @@ async function updateUserPassword(userId, newPassword) {
 
 export const userService = {
   getUserById,
+  getAllUsers,
   updateUserPassword
 }

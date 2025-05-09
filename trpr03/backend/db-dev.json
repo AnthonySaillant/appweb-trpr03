@@ -1,25 +1,60 @@
 {
   "users": [
     {
-      "email": "test@test.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
-      "name": "Emmett Brown",
-      "isDev": false,
-      "id": 1
-    },
-    {
       "email": "dev@dev.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Dev leDev",
       "isDev": true,
+      "id": 1
+    },
+    {
+      "email": "test1@test1.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 1",
+      "isDev": false,
       "id": 2
+    },
+    {
+      "email": "test2@test2.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 2",
+      "isDev": false,
+      "id": 3
+    },
+    {
+      "email": "test3@test3.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 3",
+      "isDev": false,
+      "id": 4
+    },
+    {
+      "email": "test4@test4.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 4",
+      "isDev": false,
+      "id": 5
+    },
+    {
+      "email": "test5@test5.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 5",
+      "isDev": false,
+      "id": 6
+    },
+    {
+      "email": "test6@test6.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 6",
+      "isDev": false,
+      "id": 7
     }
   ],
   "comments": [
     {
       "userId": 1,
       "comment": "J'ai inventé la machine à voyager dans le temps.",
-      "id": 1
+      "id": 2
     }
   ]
 }
