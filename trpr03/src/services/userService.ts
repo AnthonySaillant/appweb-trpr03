@@ -36,8 +36,18 @@ async function updateUserPassword(userId, newPassword) {
   }
 }
 
+async function deleteUser(userId) {
+  try {
+    const response = await axiosAuth.delete(`http://127.0.0.1:3000/users/${userId}`)
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
 export const userService = {
   getUserById,
   getAllUsers,
-  updateUserPassword
+  updateUserPassword,
+  deleteUser
 }
