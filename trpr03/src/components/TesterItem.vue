@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import type { Tester } from '../types'
-import { userService } from '../services/userService'
 
-const props = defineProps<{ tester: Tester }>()
+const props = defineProps<{
+  tester: Tester
+}>()
 
-const deleteTester = async (id: number) => {
-  try {
-    await userService.deleteUser(id)
-    alert('Utilisateur supprimer avec succès')
-  } catch (error) {
-    alert("Échec lors de la suppresion de l'utilisateur")
-  }
+const emit = defineEmits<{
+  (event: 'deleteRequest'): void
+}>()
+
+const deleteRequest = () => {
+  emit('deleteRequest')
 }
 </script>
 
@@ -21,9 +21,11 @@ const deleteTester = async (id: number) => {
     <p><strong>Email:</strong> {{ tester.email }}</p>
     <p><strong>ID:</strong> {{ tester.id }}</p>
   </div>
-  <button class="btn btn-danger" type="button" @click="deleteTester(tester.id)">
-    <i class="bi bi-trash">supprimer le testeur</i>
-  </button>
+  <div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-danger" type="button" @click="deleteRequest">
+      <i>supprimer le testeur</i>
+    </button>
+  </div>
 </template>
 
 <style scoped></style>

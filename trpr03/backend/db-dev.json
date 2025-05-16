@@ -13,6 +13,27 @@
       "name": "Tester 1",
       "isDev": false,
       "id": 2
+    },
+    {
+      "email": "test2@test2.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 2",
+      "isDev": false,
+      "id": 3
+    },
+    {
+      "email": "test3@test3.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 3",
+      "isDev": false,
+      "id": 4
+    },
+    {
+      "email": "lorikparent@gmail.com",
+      "password": "$2a$10$cHTWknBXdY6NQwKuDt4BjuXWNnUd.xpPQAeEaJ3frkonDi2LkBIAm",
+      "name": "adsa",
+      "isDev": false,
+      "id": 5
     }
   ],
   "comments": [

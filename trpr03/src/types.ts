@@ -1,7 +1,7 @@
 export interface Tester {
   id: number
   email: string
-  pasword: number
+  password: string
   name: string
   isDev: boolean
 }

@@ -1,7 +1,8 @@
 import { parseAxiosError } from '../shared/parseAxiosError'
+import type { Tester } from '../types'
 import axiosAuth from '../shared/axiosAuth'
 
-async function getUserById(userId) {
+async function getUserById(userId: number) {
   try {
     // axiosAuth est une instance d'axios configurée pour ajouter le JWT à une requête nécessitant une authentification.
     // voir le fichier src/shared/axiosAuth.js
@@ -25,7 +26,7 @@ async function getAllUsers() {
   }
 }
 
-async function updateUserPassword(userId, newPassword) {
+async function updateUserPassword(userId: number, newPassword: string) {
   try {
     const response = await axiosAuth.patch(`http://127.0.0.1:3000/users/${userId}`, {
       password: newPassword
@@ -36,9 +37,19 @@ async function updateUserPassword(userId, newPassword) {
   }
 }
 
-async function deleteUser(userId) {
+async function deleteUser(userId: number) {
   try {
     const response = await axiosAuth.delete(`http://127.0.0.1:3000/users/${userId}`)
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
+//OMIT trouver avec chat GPT OMET LE ID QUI EST AUTO GENERER DANS LA BD!
+async function addUser(tester: Omit<Tester, 'id'>) {
+  try {
+    const response = await axiosAuth.post(`http://127.0.0.1:3000/users`, tester)
     return response.data
   } catch (error) {
     throw parseAxiosError(error)
@@ -49,5 +60,6 @@ export const userService = {
   getUserById,
   getAllUsers,
   updateUserPassword,
-  deleteUser
+  deleteUser,
+  addUser
 }
