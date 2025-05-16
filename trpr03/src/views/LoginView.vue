@@ -65,42 +65,40 @@ const isRequired = (value: any) => (!value ? 'Ce champ est requis.' : true)
         </h1>
 
         <div class="container my-5">
-          <div class="row justify-content-center">
-            <Form @submit="login">
-              <div class="mb-3">
-                <label class="form-label" for="email-input">Courriel</label>
-                <Field
-                  class="form-control"
-                  id="email-input"
-                  name="email-input"
-                  type="email"
-                  :rules="isRequired"
-                  v-model="email"
-                />
-                <ErrorMessage class="text-danger" name="email-input" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="password-input">Mot de passe</label>
-                <Field
-                  class="form-control"
-                  id="password-input"
-                  name="password-input"
-                  type="password"
-                  :rules="isRequired"
-                  v-model="password"
-                />
-                <ErrorMessage class="text-danger" name="password-input" />
-              </div>
-              <div class="p-3 mb-2 bg-danger text-white" v-if="authServiceError">
-                {{ authServiceError }}
-              </div>
-              <button class="btn btn-primary" type="submit">Se connecter</button>
-            </Form>
-          </div>
+          <Form @submit="login">
+            <div class="mb-3">
+              <label class="form-label" for="email-input">Courriel</label>
+              <Field
+                class="form-control"
+                id="email-input"
+                name="email-input"
+                type="email"
+                :rules="isRequired"
+                v-model="email"
+              />
+              <ErrorMessage class="text-danger" name="email-input" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password-input">Mot de passe</label>
+              <Field
+                class="form-control"
+                id="password-input"
+                name="password-input"
+                type="password"
+                :rules="isRequired"
+                v-model="password"
+              />
+              <ErrorMessage class="text-danger" name="password-input" />
+            </div>
+            <div class="p-3 mb-2 bg-danger text-white" v-if="authServiceError">
+              {{ authServiceError }}
+            </div>
+            <button class="btn btn-primary" type="submit">Se connecter</button>
+          </Form>
         </div>
       </div>
-      <img :src="blue_king" alt="clashRoyaleKing" class="king-image" />
     </div>
+    <img :src="blue_king" alt="clashRoyaleKing" class="king-image" />
   </div>
 </template>
 
