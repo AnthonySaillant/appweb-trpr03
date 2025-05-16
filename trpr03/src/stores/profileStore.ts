@@ -27,7 +27,7 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     try {
       onError.value = false
       const authStore = useAuthStore()
-      const userId = authStore.getUserId // Assuming getUserId is a computed or a ref inside authStore
+      const userId = authStore.getUserId
       const profile = await userService.getUserById(userId)
       _initializeProfile(profile)
     } catch (error) {

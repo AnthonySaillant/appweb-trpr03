@@ -11,7 +11,7 @@ POST http://127.0.0.1:3000/login
 content-type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "dev@dev.com",
   "password": "test"
 }
 
@@ -33,7 +33,7 @@ Authorization: Bearer REMPLACER_PAR_JETON_NON_EXPIRÉ_UTILISATEUR_1
 
 
 ### Ajouter une ressource privée à un utilisateur
-POST http://127.0.0.1:3000/comments
+POST http://127.0.0.1:3000/bugs
 Authorization: Bearer REMPLACER_PAR_JETON_NON_EXPIRÉ_UTILISATEUR_1
 Content-type: application/json
 
@@ -64,5 +64,22 @@ content-type: application/json
 
 ### Tentative d'accès à une ressource de l'utilisateur 1 par l'utilisateur 2
 GET http://127.0.0.1:3000/users/2
-Authorization: Bearer REMPLACER_PAR_JETON_NON_EXPIRÉ_UTILISATEUR_1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldkBkZXYuY29tIiwiaWF0IjoxNzQ3NDE5MTk2LCJleHAiOjE3NDc0MjI3OTYsInN1YiI6IjEifQ.fT2CURLaT7AIthnQz5J8NFt9zechsloE6dYJ9DR7pRg
+
+###OUI###
+POST http://127.0.0.1:3000/bugs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldkBkZXYuY29tIiwiaWF0IjoxNzQ3NDE5MTk2LCJleHAiOjE3NDc0MjI3OTYsInN1YiI6IjEifQ.fT2CURLaT7AIthnQz5J8NFt9zechsloE6dYJ9DR7pRg
+content-type: application/json
+
+{
+  "title": "test",
+  "description": "test",
+  "productionStep": "test",
+  "platform": "test",
+  "priority": "test"
+}
+
+###OUI###
+GET http://127.0.0.1:3000/bugs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldkBkZXYuY29tIiwiaWF0IjoxNzQ3NDE5MTk2LCJleHAiOjE3NDc0MjI3OTYsInN1YiI6IjEifQ.fT2CURLaT7AIthnQz5J8NFt9zechsloE6dYJ9DR7pRg
 

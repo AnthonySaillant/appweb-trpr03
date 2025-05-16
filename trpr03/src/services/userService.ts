@@ -1,7 +1,7 @@
 import { parseAxiosError } from '../shared/parseAxiosError'
 import axiosAuth from '../shared/axiosAuth'
 
-async function getUserById(userId) {
+async function getUserById(userId: any) {
   try {
     // axiosAuth est une instance d'axios configurée pour ajouter le JWT à une requête nécessitant une authentification.
     // voir le fichier src/shared/axiosAuth.js
@@ -25,7 +25,7 @@ async function getAllUsers() {
   }
 }
 
-async function updateUserPassword(userId, newPassword) {
+async function updateUserPassword(userId: any, newPassword: any) {
   try {
     const response = await axiosAuth.patch(`http://127.0.0.1:3000/users/${userId}`, {
       password: newPassword
@@ -36,7 +36,7 @@ async function updateUserPassword(userId, newPassword) {
   }
 }
 
-async function deleteUser(userId) {
+async function deleteUser(userId: any) {
   try {
     const response = await axiosAuth.delete(`http://127.0.0.1:3000/users/${userId}`)
     return response.data

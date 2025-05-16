@@ -13,6 +13,41 @@
       "name": "Tester 1",
       "isDev": false,
       "id": 2
+    },
+    {
+      "email": "test2@test2.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 2",
+      "isDev": false,
+      "id": 3
+    },
+    {
+      "email": "test3@test3.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 3",
+      "isDev": false,
+      "id": 4
+    },
+    {
+      "email": "test4@test4.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 4",
+      "isDev": false,
+      "id": 5
+    },
+    {
+      "email": "test5@test5.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 5",
+      "isDev": false,
+      "id": 6
+    },
+    {
+      "email": "test6@test6.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 6",
+      "isDev": false,
+      "id": 7
     }
   ],
   "comments": [
@@ -20,6 +55,53 @@
       "userId": 1,
       "comment": "J'ai inventé la machine à voyager dans le temps.",
       "id": 2
+    }
+  ],
+  "bugs": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "bug1",
+      "description": "description1",
+      "productionStep": "productioStep1",
+      "platform": "platform1",
+      "priority": "priority1"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "bug2",
+      "description": "description2",
+      "productionStep": "productioStep2",
+      "platform": "platform2",
+      "priority": "priority2"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "title": "bug3",
+      "description": "description3",
+      "productionStep": "productioStep3",
+      "platform": "platform3",
+      "priority": "priority3"
+    },
+    {
+      "userId": 1,
+      "title": "dadada",
+      "description": "dadada",
+      "productionStep": "dadada",
+      "platform": "dadada",
+      "priority": "Low",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "title": "asasasa",
+      "description": "asasasasa",
+      "productionStep": "asasas",
+      "platform": "asasasa",
+      "priority": "Low",
+      "id": 5
     }
   ]
 }
