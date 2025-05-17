@@ -3,7 +3,6 @@ import type { Tester } from '../types'
 import axiosAuth from '../shared/axiosAuth'
 
 async function getUserById(userId: number) {
-
   try {
     // axiosAuth est une instance d'axios configurée pour ajouter le JWT à une requête nécessitant une authentification.
     // voir le fichier src/shared/axiosAuth.js
@@ -37,7 +36,6 @@ async function updateUserPassword(userId: number, newPassword: string) {
     throw parseAxiosError(error)
   }
 }
-
 
 async function deleteUser(userId: number) {
   try {

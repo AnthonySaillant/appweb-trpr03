@@ -29,7 +29,6 @@
       "id": 4
     },
     {
-
       "email": "test4@test4.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Tester 4",
@@ -42,14 +41,6 @@
       "name": "Tester 5",
       "isDev": false,
       "id": 6
-    },
-    {
-      "email": "test6@test6.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
-      "name": "Tester 6",
-      "isDev": false,
-      "id": 7
-
     }
   ],
   "comments": [
@@ -86,24 +77,6 @@
       "productionStep": "productioStep3",
       "platform": "platform3",
       "priority": "priority3"
-    },
-    {
-      "userId": 1,
-      "title": "dadada",
-      "description": "dadada",
-      "productionStep": "dadada",
-      "platform": "dadada",
-      "priority": "Low",
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "title": "asasasa",
-      "description": "asasasasa",
-      "productionStep": "asasas",
-      "platform": "asasasa",
-      "priority": "Low",
-      "id": 5
     }
   ]
 }
