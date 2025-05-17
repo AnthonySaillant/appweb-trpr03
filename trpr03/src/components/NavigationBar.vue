@@ -67,6 +67,16 @@ function logout() {
         >
           Gestion des bugs
         </RouterLink>
+
+        <RouterLink
+          v-else
+          class="nav-link text-warning"
+          :class="{ active: $route.name == 'TesterBugList' }"
+          v-if="isLoggedIn && !isDev"
+          :to="{ name: 'TesterBugList' }"
+        >
+          bugs
+        </RouterLink>
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">

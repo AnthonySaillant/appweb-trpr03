@@ -4,7 +4,7 @@ import { userService } from '../services/userService'
 import type { Tester } from '../types'
 import TesterItem from '../components/TesterItem.vue'
 import background from '../assets/ClashRoyaleBG.png'
-import TesterAddForm from '@/components/TesterAddForm.vue'
+import TesterAddForm from '../components/TesterAddForm.vue'
 
 const users = ref<Tester[]>([])
 const allUsersLength = ref(0)
@@ -55,7 +55,7 @@ const confirmDelete = async () => {
       users.value.splice(index, 1)
       allUsersLength.value--
     } catch (error) {
-      alert("Erreur lors de la suppression de l'utilisateur")
+      console.log("Erreur lors de la suppression de l'utilisateur")
     }
   }
   closeModal()

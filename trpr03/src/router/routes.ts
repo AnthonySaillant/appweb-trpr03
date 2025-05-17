@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import TesterManager from '@/views/TesterManager.vue'
 import DevBugList from '@/views/DevBugList.vue'
+import TesterBugList from '@/views/TesterBugList.vue'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/devBugList',
     name: 'DevBugList',
     component: DevBugList
+  },
+  {
+    path: '/testerBugList',
+    name: 'TesterBugList',
+    component: TesterBugList
   }
 ]
 

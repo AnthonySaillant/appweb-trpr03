@@ -15,4 +15,16 @@ export interface Bug {
   platform: string
   priority: string
   isVerified: boolean
+  type: BugType
+  image: string
+}
+
+export enum BugType {
+  Crash = 'Crash',
+  Graphical = 'Graphical',
+  Sound = 'Sound',
+  UI = 'UI',
+  Performance = 'Performance',
+  Gameplay = 'Gameplay',
+  Network = 'Network'
 }
