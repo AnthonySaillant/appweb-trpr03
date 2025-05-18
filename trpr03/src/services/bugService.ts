@@ -40,8 +40,20 @@ async function getAllBugs() {
   }
 }
 
+async function verifyBug(bugId: number, newVerify: boolean) {
+  try {
+    const response = await axiosAuth.patch(`http://127.0.0.1:3000/bugs/${bugId}`, {
+      isVerified: newVerify
+    })
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
 export const bugService = {
   getBugById,
   addBug,
-  getAllBugs
+  getAllBugs,
+  verifyBug
 }

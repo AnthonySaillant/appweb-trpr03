@@ -34,6 +34,27 @@
       "name": "Tester 4",
       "isDev": false,
       "id": 5
+    },
+    {
+      "email": "test5@test5.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 5",
+      "isDev": false,
+      "id": 6
+    },
+    {
+      "email": "test6@test6.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 6",
+      "isDev": false,
+      "id": 7
+    },
+    {
+      "email": "aaa@a.a",
+      "password": "$2a$10$YvDeEVM.e8ZNBHcMdROXQOI6UYgScSY2NcxGQTT.I/nmWcGwPqZE.",
+      "name": "AaA",
+      "isDev": false,
+      "id": 8
     }
   ],
   "comments": [
@@ -51,7 +72,8 @@
       "description": "description1",
       "productionStep": "productioStep1",
       "platform": "platform1",
-      "priority": "priority1"
+      "priority": "priority1",
+      "isVerified": true
     },
     {
       "id": 2,
@@ -60,7 +82,8 @@
       "description": "description2",
       "productionStep": "productioStep2",
       "platform": "platform2",
-      "priority": "priority2"
+      "priority": "priority2",
+      "isVerified": true
     },
     {
       "id": 3,
@@ -70,17 +93,6 @@
       "productionStep": "productioStep3",
       "platform": "platform3",
       "priority": "priority3"
-    },
-    {
-      "userId": 2,
-      "title": "e",
-      "description": "e",
-      "productionStep": "e",
-      "platform": "e",
-      "priority": "Haute",
-      "type": "Graphical",
-      "image": "",
-      "id": 4
     }
   ]
 }

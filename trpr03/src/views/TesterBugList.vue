@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useBugStore } from '../stores/bugStore'
+import { useAuthStore } from '../stores/authStore'
 import { BugType } from '../types'
 import AddBug from '../components/AddBugForm.vue'
 import BugItem from '../components/BugItem.vue'
 import background from '../assets/ClashRoyaleBG.png'
 
 const bugStore = useBugStore()
+const authStore = useAuthStore()
 const bugIdInput = ref<number | null>(null)
 
 const backgroundStyle = {
@@ -22,11 +24,13 @@ onMounted(async () => {
   await bugStore.fetchAllBugs()
 })
 
-async function fetchBug() {
-  if (bugIdInput.value !== null) {
-    await bugStore.fetchBugById(bugIdInput.value)
-  }
-}
+const userBugs = computed(() => {
+  const userId = Number(authStore.getUserId)
+
+  //Pour seulement avoir ses bugs
+  //TODO: voir les bugs faits par les devs ?
+  return bugStore.allBugs.filter((bug) => bug.userId === userId)
+})
 
 async function handleNewBugSubmit(bug: {
   userId: number
@@ -46,17 +50,9 @@ async function handleNewBugSubmit(bug: {
 <template>
   <div :style="backgroundStyle">
     <div class="container">
-      <div v-if="bugStore.currentBug" class="mb-5">
-        <h3>Détails du bug</h3>
-        <BugItem :bug="bugStore.currentBug" />
-      </div>
-      <div v-else-if="bugIdInput !== null">
-        <p>Aucun bug trouvé avec l'ID {{ bugIdInput }}</p>
-      </div>
-
-      <h2 class="mb-5 mt-5 text-white">Tous les bugs</h2>
+      <h2 class="mb-5 mt-5 text-white">Mes bugs</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <div class="col" v-for="bug in bugStore.allBugs" :key="bug.id">
+        <div class="col" v-for="bug in userBugs" :key="bug.id">
           <div class="card h-100 p-3">
             <BugItem :bug="bug" />
           </div>

@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { bugService } from '../services/bugService'
 import type { Bug } from '../types'
 import { useAuthStore } from './authStore'
-import { userService } from '../services/userService'
 
 export const useBugStore = defineStore('bugStoreId', () => {
   const allBugs = ref<Bug[]>([])
@@ -13,7 +12,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
     try {
       allBugs.value = await bugService.getAllBugs()
     } catch (error) {
-      console.error('Failed to fetch bugs:', error)
+      console.error('Erreur lors du chargement des bugs:', error)
     }
   }
 
@@ -21,7 +20,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
     try {
       currentBug.value = await bugService.getBugById(id)
     } catch (error) {
-      console.error('Failed to fetch bug by id:', error)
+      console.error('Erreur lors de la récupération du bug:', error)
       currentBug.value = null
     }
   }
@@ -46,7 +45,26 @@ export const useBugStore = defineStore('bugStoreId', () => {
       const newBug = await bugService.addBug(bugWithUserId)
       allBugs.value.push(newBug)
     } catch (error) {
-      console.error('Failed to add bug:', error)
+      console.error('Erreur lors de l’ajout du bug:', error)
+    }
+  }
+
+  async function verifyBug(bug: Bug) {
+    try {
+      const newVerify = !bug.isVerified
+
+      const updatedBug = await bugService.verifyBug(bug.id, newVerify)
+
+      const index = allBugs.value.findIndex((b) => b.id === bug.id)
+      if (index !== -1) {
+        allBugs.value[index] = updatedBug
+      }
+
+      if (currentBug.value?.id === bug.id) {
+        currentBug.value = updatedBug
+      }
+    } catch (error) {
+      console.error('Erreur lors de la vérification du bug:', error)
     }
   }
 
@@ -55,6 +73,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
     allBugs,
     fetchAllBugs,
     fetchBugById,
-    addBug
+    addBug,
+    verifyBug
   }
 })
