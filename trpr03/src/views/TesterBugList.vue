@@ -71,7 +71,7 @@ async function handleNewBugSubmit(bug: {
 <template>
   <div :style="backgroundStyle">
     <div class="container">
-      <h2 class="mb-5 mt-5 text-white">Mes bugs</h2>
+      <h2 class="mb-5 mt-5 text-white" v-if="userBugs.length > 0">Mes bugs</h2>
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col" v-for="bug in userBugs" :key="bug.id">

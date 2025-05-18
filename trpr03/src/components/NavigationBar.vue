@@ -77,6 +77,15 @@ function logout() {
         >
           bugs
         </RouterLink>
+
+        <RouterLink
+          class="nav-link text-warning"
+          :class="{ active: $route.name == 'AddBugCategory' }"
+          v-if="isLoggedIn && isDev"
+          :to="{ name: 'AddBugCategory' }"
+        >
+          Ajouter categorie
+        </RouterLink>
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">

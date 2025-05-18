@@ -1,18 +1,26 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { bugService } from '../services/bugService'
-import type { Bug } from '../types'
+import { BugType, type Bug } from '../types'
 import { useAuthStore } from './authStore'
 
 export const useBugStore = defineStore('bugStoreId', () => {
   const allBugs = ref<Bug[]>([])
   const currentBug = ref<Bug | null>(null)
+  const categories = ref<string[]>([...Object.values(BugType)])
 
   async function fetchAllBugs() {
     try {
       allBugs.value = await bugService.getAllBugs()
     } catch (error) {
       console.error('Erreur lors du chargement des bugs:', error)
+    }
+  }
+
+  function addCategory(category: string) {
+    const trimmed = category.trim()
+    if (!categories.value.includes(trimmed)) {
+      categories.value.push(trimmed)
     }
   }
 
@@ -84,10 +92,12 @@ export const useBugStore = defineStore('bugStoreId', () => {
   return {
     currentBug,
     allBugs,
+    categories,
     fetchAllBugs,
     fetchBugById,
     addBug,
     verifyBug,
-    deleteBug
+    deleteBug,
+    addCategory
   }
 })

@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div :style="backgroundStyle">
-    <div class="container">
+    <div class="container mb-5">
       <h2 class="mb-5 mt-5 text-white">Tous les bugs (Développeur)</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col" v-for="bug in bugStore.allBugs" :key="bug.id">

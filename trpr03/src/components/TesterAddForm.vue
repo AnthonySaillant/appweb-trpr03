@@ -3,8 +3,10 @@ import { ref, defineProps, defineEmits } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import { userService } from '../services/userService'
 import type { Tester } from '../types'
+import { useBugStore } from '../stores/bugStore'
 
 const props = defineProps<{ userCount: number }>()
+const bugStore = useBugStore()
 const formError = ref<string | null>(null)
 
 const emit = defineEmits<{

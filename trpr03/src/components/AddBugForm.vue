@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BugType } from '../types'
 import { Form, Field, ErrorMessage } from 'vee-validate'
+import { useBugStore } from '../stores/bugStore'
+
+const bugStore = useBugStore()
 
 const isRequired = (value: any) => (!value ? 'Ce champ est requis.' : true)
 
@@ -15,7 +17,7 @@ const emit = defineEmits<{
       productionStep: string
       platform: string
       priority: string
-      type: BugType
+      type: string
       image: string
     }
   ): void
@@ -28,7 +30,7 @@ const newBug = ref({
   productionStep: '',
   platform: '',
   priority: 'Bas',
-  type: BugType.Crash,
+  type: '',
   image: ''
 })
 
@@ -50,7 +52,7 @@ function handleDragOver(event: DragEvent) {
 
 function submit() {
   emit('submit-bug', { ...newBug.value })
-  // Reset form
+
   newBug.value = {
     userId: 1,
     title: '',
@@ -58,7 +60,7 @@ function submit() {
     productionStep: '',
     platform: '',
     priority: 'Bas',
-    type: BugType.Crash,
+    type: '',
     image: ''
   }
 }
@@ -128,10 +130,11 @@ function submit() {
         <option value="Haute">Haute</option>
       </select>
 
-      <label for="type" class="mt-3 mb-1">Type</label>
+      <label for="type" class="mt-3 mb-1">Catégorie</label>
       <select id="type" v-model="newBug.type" class="form-select" required>
-        <option v-for="type in Object.values(BugType)" :key="type" :value="type">
-          {{ type }}
+        <option disabled value="">Sélectionnez une catégorie</option>
+        <option v-for="category in bugStore.categories" :key="category" :value="category">
+          {{ category }}
         </option>
       </select>
 
