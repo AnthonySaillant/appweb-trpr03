@@ -17,9 +17,7 @@ onMounted(async () => {
     const allUsers = await userService.getAllUsers()
     allUsersLength.value = allUsers.length
     users.value = allUsers.filter((user: any) => !user.isDev)
-  } catch (error) {
-    console.error('Erreur lors de la récupération des utilisateurs:', error)
-  }
+  } catch (error) {}
 })
 
 const onTesterAdd = (tester: Tester) => {
@@ -54,9 +52,7 @@ const confirmDelete = async () => {
 
       users.value.splice(index, 1)
       allUsersLength.value--
-    } catch (error) {
-      console.log("Erreur lors de la suppression de l'utilisateur")
-    }
+    } catch (error) {}
   }
   closeModal()
 }

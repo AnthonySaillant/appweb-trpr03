@@ -68,12 +68,26 @@ export const useBugStore = defineStore('bugStoreId', () => {
     }
   }
 
+  async function deleteBug(id: number) {
+    try {
+      await bugService.deleteBug(id)
+
+      allBugs.value = allBugs.value.filter((bug) => bug.id !== id) //chat GPT supprime le bug localement
+      if (currentBug.value?.id === id) {
+        currentBug.value = null
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression du bug:', error)
+    }
+  }
+
   return {
     currentBug,
     allBugs,
     fetchAllBugs,
     fetchBugById,
     addBug,
-    verifyBug
+    verifyBug,
+    deleteBug
   }
 })

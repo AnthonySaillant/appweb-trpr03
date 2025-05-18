@@ -4,6 +4,7 @@ export interface Tester {
   password: string
   name: string
   isDev: boolean
+  karma: number
 }
 
 export interface Bug {

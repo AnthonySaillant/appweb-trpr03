@@ -3,7 +3,6 @@ import type { Tester } from '../types'
 import axiosAuth from '../shared/axiosAuth'
 
 async function getUserById(userId: number) {
-
   try {
     // axiosAuth est une instance d'axios configurée pour ajouter le JWT à une requête nécessitant une authentification.
     // voir le fichier src/shared/axiosAuth.js
@@ -38,6 +37,16 @@ async function updateUserPassword(userId: number, newPassword: string) {
   }
 }
 
+async function addKarmaToUser(userId: number, newKarma: number) {
+  try {
+    const response = await axiosAuth.patch(`http://127.0.0.1:3000/users/${userId}`, {
+      karma: newKarma
+    })
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
 
 async function deleteUser(userId: number) {
   try {
@@ -63,5 +72,6 @@ export const userService = {
   getAllUsers,
   updateUserPassword,
   deleteUser,
-  addUser
+  addUser,
+  addKarmaToUser
 }

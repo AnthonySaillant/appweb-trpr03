@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { defineProps, computed, ref } from 'vue'
 import { useBugStore } from '../stores/bugStore'
+import { useProfileStore } from '../stores/profileStore'
 import type { Bug } from '../types'
 import blue_king from '../assets/Blue_King_Laughing.webp'
 
@@ -9,14 +10,35 @@ const props = defineProps<{
   canVerify?: boolean
 }>()
 
+const karmaForGoodBugFound = ref(100)
 const bugImage = computed(() =>
   props.bug.image && props.bug.image.trim() !== '' ? props.bug.image : blue_king
 )
 
 const bugStore = useBugStore()
+const profileStore = useProfileStore()
+
+const isLoading = ref(false)
 
 async function verifyBug() {
   await bugStore.verifyBug(props.bug)
+}
+
+async function addKarmaToUser() {
+  isLoading.value = true
+  try {
+    const testerId = props.bug.userId
+    await profileStore.addKarmaToUser(testerId, karmaForGoodBugFound.value)
+  } catch (error) {
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const emit = defineEmits(['deleteRequest'])
+
+function deleteRequest() {
+  emit('deleteRequest', props.bug.id)
 }
 </script>
 
@@ -33,14 +55,23 @@ async function verifyBug() {
     <p><strong>User ID:</strong> {{ bug.userId }}</p>
     <p><strong>Vérifié:</strong> {{ bug.isVerified ? 'Oui' : 'Non' }}</p>
 
-    <button
-      v-if="canVerify"
-      class="btn"
-      :class="bug.isVerified ? 'btn-warning' : 'btn-success'"
-      @click="verifyBug"
-    >
-      {{ bug.isVerified ? 'Dévérifier le bug' : 'Vérifier le bug' }}
-    </button>
+    <div v-if="canVerify" class="d-flex flex-column align-items-center gap-2">
+      <button
+        class="btn"
+        :class="bug.isVerified ? 'btn-warning' : 'btn-success'"
+        @click="verifyBug"
+      >
+        {{ bug.isVerified ? 'Dévérifier le bug' : 'Vérifier le bug' }}
+      </button>
+
+      <button class="btn btn-primary" @click="addKarmaToUser" :disabled="isLoading">
+        {{ isLoading ? 'Chargement...' : 'Ajouter karma' }}
+      </button>
+    </div>
+
+    <div v-else-if="bug.isVerified" class="mt-3">
+      <button class="btn btn-danger" @click="deleteRequest">Supprimer le bug</button>
+    </div>
   </div>
 </template>
 

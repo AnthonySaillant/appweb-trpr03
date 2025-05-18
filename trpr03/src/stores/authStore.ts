@@ -15,9 +15,9 @@ export const useAuthStore = defineStore('authStoreId', () => {
   const isLoggedIn = computed(() => !!token.value)
 
   const getUserId = computed(() => {
-    if (!token.value) return ''
+    if (!token.value) return 0
     const payload: DecodedToken = jwtDecode(token.value)
-    return payload.sub
+    return Number(payload.sub) || 0
   })
 
   const isTokenExpired = computed(() => {
@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('authStoreId', () => {
   }
 
   function refreshToken() {
-    logout() // Simplified action for token refresh: logs out the user
+    logout()
   }
 
   return {

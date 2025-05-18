@@ -13,6 +13,7 @@ const profileStore = useProfileStore()
 
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
+const karma = computed(() => profileStore.karma)
 const isDev = computed(() => profileStore.isDev)
 const newPassword = ref('')
 const newPasswordValidation = ref('')
@@ -65,8 +66,9 @@ const backgroundStyle = {
       </h1>
 
       <div class="row mb-4 mt-5 text-center">
-        <div class="col-md-6"><strong>Nom :</strong> {{ name }}</div>
-        <div class="col-md-6"><strong>Courriel :</strong> {{ email }}</div>
+        <div class="col-md-4"><strong>Nom :</strong> {{ name }}</div>
+        <div class="col-md-4"><strong>Courriel :</strong> {{ email }}</div>
+        <div class="col-md-4"><strong>Karma :</strong> {{ karma }}</div>
       </div>
 
       <h2 class="h4 mb-5 mt-5 text-center">Changer le mot de passe</h2>

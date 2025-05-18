@@ -31,6 +31,15 @@ async function addBug(bug: {
   }
 }
 
+async function deleteBug(bugId: number) {
+  try {
+    const response = await axiosAuth.delete(`http://127.0.0.1:3000/bugs/${bugId}`)
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
 async function getAllBugs() {
   try {
     const response = await axiosAuth.get('http://127.0.0.1:3000/bugs')
@@ -55,5 +64,6 @@ export const bugService = {
   getBugById,
   addBug,
   getAllBugs,
-  verifyBug
+  verifyBug,
+  deleteBug
 }

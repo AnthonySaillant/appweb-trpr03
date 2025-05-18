@@ -48,13 +48,6 @@
       "name": "Tester 6",
       "isDev": false,
       "id": 7
-    },
-    {
-      "email": "aaa@a.a",
-      "password": "$2a$10$YvDeEVM.e8ZNBHcMdROXQOI6UYgScSY2NcxGQTT.I/nmWcGwPqZE.",
-      "name": "AaA",
-      "isDev": false,
-      "id": 8
     }
   ],
   "comments": [
@@ -72,8 +65,7 @@
       "description": "description1",
       "productionStep": "productioStep1",
       "platform": "platform1",
-      "priority": "priority1",
-      "isVerified": true
+      "priority": "priority1"
     },
     {
       "id": 2,
@@ -82,8 +74,7 @@
       "description": "description2",
       "productionStep": "productioStep2",
       "platform": "platform2",
-      "priority": "priority2",
-      "isVerified": true
+      "priority": "priority2"
     },
     {
       "id": 3,

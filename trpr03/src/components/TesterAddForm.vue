@@ -18,7 +18,8 @@ const newTester = ref<Omit<Tester, 'id'>>({
   email: '',
   name: '',
   password: '',
-  isDev: false
+  isDev: false,
+  karma: 0
 })
 
 function translateErrorMessage(rawMessage: string): string {

@@ -9,10 +9,12 @@ export const useProfileStore = defineStore('profileStoreId', () => {
   const password = ref('') //enlever potentiellement
   const onError = ref(false)
   const isDev = ref(false)
+  const karma = ref(0)
 
   function _initializeProfile(profile: {
     email: string
     name: string
+    karma: number
     password: string
     isDev: boolean
   }) {
@@ -21,6 +23,7 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     password.value = profile.password
     isDev.value = profile.isDev
     onError.value = false
+    karma.value = Number(profile.karma) || 0
   }
 
   async function getProfile() {
@@ -47,13 +50,31 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     }
   }
 
+  async function addKarmaToUser(userId: number, karmaToAdd: number) {
+    try {
+      onError.value = false
+      const userProfile = await userService.getUserById(userId)
+      const currentKarma = Number(userProfile.karma) || 0
+
+      const newKarma = currentKarma + karmaToAdd
+      await userService.addKarmaToUser(userId, newKarma)
+
+      const authStore = useAuthStore()
+      karma.value = newKarma
+    } catch (error) {
+      onError.value = true
+    }
+  }
+
   return {
     email,
     name,
     password,
+    karma,
     onError,
     getProfile,
     updatePassword,
+    addKarmaToUser,
     isDev
   }
 })
