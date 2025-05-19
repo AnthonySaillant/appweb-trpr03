@@ -6,6 +6,13 @@ describe('Récits utilisateur', () => {
     name: 'Bruce Lee'
   }
 
+  const dev = {
+    email: 'dev@dev.com',
+    password: 'test',
+    name: 'Dev leDev',
+    isDev: true
+  }
+
   // Exécuté avant chaque test
   beforeEach(() => {
     // On réinitialise la base de données en appelant le script backend:cypress:seed qui se trouve dans le package.json. Ce script copie le fichier db-cypress-default.json dans db-cypress.json qui est utilisé par le serveur backend. Ainsi, on a une base de données propre pour chaque test.
@@ -17,6 +24,11 @@ describe('Récits utilisateur', () => {
       email: user.email,
       password: user.password,
       name: user.name
+    })
+    cy.request('POST', 'http://127.0.0.1:3000/register', {
+      email: dev.email,
+      password: dev.password,
+      name: dev.name
     })
   })
 
@@ -66,5 +78,127 @@ describe('Récits utilisateur', () => {
 
     cy.contains(user.name)
     cy.contains(user.email)
+  })
+
+  it('je peux créer un bug en tant que testeur', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    // Remplir le formulaire de création du bug chat GPT
+    cy.get('input#title').type('Bug Cypress Test')
+    cy.get('input#description').type('Description du bug créé par Cypress')
+    cy.get('input#productionStep').type('Étape de test')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+
+    cy.get('button[type=submit]').click()
+  })
+
+  it('je peux créer un bug en tant que testeur et ensuite je peut lappercevoir dans la liste de bugs', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    // Remplir le formulaire de création du bug chat GPT
+    cy.get('input#title').type('Bug Cypress Test')
+    cy.get('input#description').type('Description du bug créé par Cypress')
+    cy.get('input#productionStep').type('Étape de test')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+
+    cy.get('button[type=submit]').click()
+
+    cy.wait(2000) //chat GPT attendre 5 secondes
+
+    cy.window().then((win) => {
+      //chat GPT scroll vers le haut
+      win.scrollTo(0, 0)
+    })
+
+    cy.contains('h4', 'Bug Cypress Test').should('be.visible')
+    cy.contains('p', 'Description du bug créé par Cypress').should('be.visible')
+    cy.contains('p', 'Platform: Web').should('be.visible')
+    cy.contains('p', 'Type: Crash').should('be.visible')
+  })
+
+  it('je peux changer la priorité d’un bug et la sauvegarder', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    // Création du bug via le formulaire (comme avant)
+    cy.get('input#title').type('Bug Cypress Test')
+    cy.get('input#description').type('Description du bug créé par Cypress')
+    cy.get('input#productionStep').type('Étape de test')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+    cy.get('button[type=submit]').click()
+
+    cy.wait(2000)
+
+    cy.window().then((win) => win.scrollTo(0, 0))
+
+    cy.contains('h4', 'Bug Cypress Test').parents('.card').as('bugCard') //chat GPT
+
+    cy.get('@bugCard').contains('button', 'Changer la priorité').click()
+
+    cy.get('@bugCard').find('select#new-priority').should('be.visible').select('Moyenne')
+
+    cy.get('@bugCard').contains('button', 'Sauvegarder').click()
+
+    cy.get('@bugCard').contains('Priorité: Moyenne').should('be.visible')
+  })
+
+  it('je peux créer un bug, me déconnecter et me reconnecter et il sera toujours là', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    // Création du bug via le formulaire (comme avant)
+    cy.get('input#title').type('Bug Cypress Test')
+    cy.get('input#description').type('Description du bug créé par Cypress')
+    cy.get('input#productionStep').type('Étape de test')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+    cy.get('button[type=submit]').click()
+
+    cy.wait(1000)
+
+    cy.contains(/déconnecter/i).click()
+
+    cy.contains(/connexion/i)
+
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    cy.window().then((win) => win.scrollTo(0, 0))
+
+    cy.contains('h4', 'Bug Cypress Test').should('be.visible')
+    cy.contains('p', 'Description du bug créé par Cypress').should('be.visible')
+    cy.contains('p', 'Platform: Web').should('be.visible')
+    cy.contains('p', 'Type: Crash').should('be.visible')
+  })
+  it('je peux me changer mon mot de passe', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/profile')
+
+    const newPass = 'allo'
+
+    cy.get('input#password-input').clear().type(newPass)
+
+    cy.get('input#password-validation-input').clear().type(newPass)
+
+    cy.get('button[type=submit]').click()
+
+    cy.wait(2000)
+
+    cy.contains('Mot de passe changé avec succès!').should('be.visible')
   })
 })

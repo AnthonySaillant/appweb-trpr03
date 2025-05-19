@@ -2,19 +2,25 @@
   "users": [
     {
       "email": "dev@dev.com",
-      "password": "$2a$10$8LrqsV2lOR0kVyQUJM8ZVu0rIkLIrREHRyblLky6jMaWjRzM.XLL.",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Dev leDev",
       "isDev": true,
       "id": 1,
-      "karma": -100
+      "karma": 100
+    },
+    {
+      "email": "test1@test1.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 1",
+      "isDev": false,
+      "id": 2
     },
     {
       "email": "test2@test2.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Tester 2",
       "isDev": false,
-      "id": 3,
-      "karma": 100
+      "id": 3
     },
     {
       "email": "test3@test3.com",
@@ -38,11 +44,10 @@
       "id": 6
     },
     {
-      "email": "lorikparent@gmail.com",
-      "password": "$2a$10$VBwdb/1VIsIeg4.EuWvkjOsN7mi26Td5Rq4Q8AGA64KES.pEHPnR.",
-      "name": "a",
+      "email": "test6@test6.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Tester 6",
       "isDev": false,
-      "karma": 0,
       "id": 7
     }
   ],
@@ -62,6 +67,16 @@
       "productionStep": "productioStep1",
       "platform": "platform1",
       "priority": "priority1"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "bug2",
+      "description": "description2",
+      "productionStep": "productioStep2",
+      "platform": "platform2",
+      "priority": "Moyenne",
+      "isVerified": true
     },
     {
       "id": 3,

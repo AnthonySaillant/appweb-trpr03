@@ -13,7 +13,9 @@ const backgroundStyle = {
 <template>
   <div :style="backgroundStyle">
     <div class="text-container text-white">
-      <div class="Salut">Salut!</div>
+      <div class="Salut">
+        <h1>à propos...</h1>
+      </div>
       <div class="description_travail_texte">
         Application développé par Lorik Parent et Anthony Saillant pour le cours de App Web
       </div>
