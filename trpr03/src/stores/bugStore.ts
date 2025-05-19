@@ -16,7 +16,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
       console.error('Erreur lors du chargement des bugs:', error)
     }
   }
-
+  //chat GPT pour le trim
   function addCategory(category: string) {
     const trimmed = category.trim()
     if (!categories.value.includes(trimmed)) {

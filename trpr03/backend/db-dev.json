@@ -5,8 +5,7 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Dev leDev",
       "isDev": true,
-      "id": 1,
-      "karma": 100
+      "id": 1
     },
     {
       "email": "test1@test1.com",
@@ -75,8 +74,7 @@
       "description": "description2",
       "productionStep": "productioStep2",
       "platform": "platform2",
-      "priority": "Moyenne",
-      "isVerified": true
+      "priority": "priority2"
     },
     {
       "id": 3,

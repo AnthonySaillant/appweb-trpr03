@@ -42,7 +42,8 @@ const routes = [
     name: 'TesterManager',
     component: TesterManager,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresDev: true
     }
   },
   {
@@ -50,7 +51,8 @@ const routes = [
     name: 'DevBugList',
     component: DevBugList,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresDev: true
     }
   },
   {
@@ -58,7 +60,8 @@ const routes = [
     name: 'TesterBugList',
     component: TesterBugList,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresNonDev: true
     }
   },
   {
@@ -66,7 +69,8 @@ const routes = [
     name: 'AddBugCategory',
     component: AddBugCategory,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresDev: true
     }
   }
 ]
