@@ -2,13 +2,13 @@
   "users": [
     {
       "email": "mon@courriel.com",
-      "password": "$2a$10$wp7F44eHyxkV8J8NnbpyLuQCrydRG6hB.pF4SbDET9Woqc3n1u8ha",
+      "password": "$2a$10$UFCeItnfaB2kA6e9Y2iWKu6VZUHdkhpnPldYgX3PaXb5XO//sesO2",
       "name": "Bruce Lee",
       "id": 1
     },
     {
       "email": "dev@dev.com",
-      "password": "$2a$10$teFx/LvJ98ZbYQfbIjbaa.Eq9AtTHh9KMtEuL68YFGHjjZdnBKury",
+      "password": "$2a$10$Os4h6aS1mWqIUckXUMqOiu8IVWGo/H1JVIJXbXE08LVy2Sra6INpG",
       "name": "Dev leDev",
       "id": 2
     }

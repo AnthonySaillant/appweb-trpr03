@@ -6,7 +6,7 @@ import NotFoundView from '../views/NotFoundView.vue'
 import TesterManager from '@/views/TesterManager.vue'
 import DevBugList from '@/views/DevBugList.vue'
 import TesterBugList from '@/views/TesterBugList.vue'
-import AddBugCategory from '@/views/addBugCategory.vue'
+import AddBugCategory from '@/views/AddBugCategory.vue'
 
 const routes = [
   {

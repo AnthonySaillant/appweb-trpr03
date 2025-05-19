@@ -13,6 +13,10 @@ describe('Récits utilisateur', () => {
     isDev: true
   }
 
+  const testEmail = 'nouveau@testeur.com'
+  const testName = 'Nouveau Testeur'
+  const testPassword = 'motdepasse123'
+
   // Exécuté avant chaque test
   beforeEach(() => {
     // On réinitialise la base de données en appelant le script backend:cypress:seed qui se trouve dans le package.json. Ce script copie le fichier db-cypress-default.json dans db-cypress.json qui est utilisé par le serveur backend. Ainsi, on a une base de données propre pour chaque test.
@@ -200,5 +204,61 @@ describe('Récits utilisateur', () => {
     cy.wait(2000)
 
     cy.contains('Mot de passe changé avec succès!').should('be.visible')
+  })
+
+  //Tests de Dev
+  it("je peux ajouter un testeur via le formulaire d'inscription", () => {
+    cy.login('dev@dev.com', 'test')
+
+    cy.visit('/testerManager')
+
+    cy.get('input[name="email"]').type(testEmail)
+    cy.get('input[name="password"]').type(testPassword)
+    cy.get('input[name="name"]').type(testName)
+
+    cy.get('button[type="submit"]').click()
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i).click()
+    cy.login(testEmail, testPassword)
+    cy.visit('/profile')
+
+    cy.contains(testName).should('exist')
+    cy.contains(testEmail).should('exist')
+  })
+
+  it('je peux supprimer un testeur', () => {
+    cy.login(dev.email, dev.password)
+
+    cy.visit('/testerManager')
+
+    cy.get('input[name="email"]').type(testEmail)
+    cy.get('input[name="password"]').type(testPassword)
+    cy.get('input[name="name"]').type(testName)
+
+    cy.get('button[type="submit"]').click()
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i)
+    cy.login(testEmail, testPassword)
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i).click()
+
+    cy.login(dev.email, dev.password)
+
+    cy.visit('/testerManager')
+
+    cy.contains(testEmail)
+      .parent()
+      .within(() => {
+        cy.contains(/supprimer le testeur/i).click()
+      })
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i).click()
+    cy.login(testEmail, testPassword)
+
+    cy.contains(/identifiants invalides/i).should('exist')
   })
 })
