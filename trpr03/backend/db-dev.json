@@ -6,7 +6,7 @@
       "name": "Dev leDev",
       "isDev": true,
       "id": 1,
-      "karma": 0
+      "karma": -100
     },
     {
       "email": "test1@test1.com",
@@ -14,14 +14,15 @@
       "name": "Tester 1",
       "isDev": false,
       "id": 2,
-      "karma": 100
+      "karma": 500
     },
     {
       "email": "test2@test2.com",
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Tester 2",
       "isDev": false,
-      "id": 3
+      "id": 3,
+      "karma": 100
     },
     {
       "email": "test3@test3.com",
@@ -43,13 +44,6 @@
       "name": "Tester 5",
       "isDev": false,
       "id": 6
-    },
-    {
-      "email": "test6@test6.com",
-      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
-      "name": "Tester 6",
-      "isDev": false,
-      "id": 7
     }
   ],
   "comments": [

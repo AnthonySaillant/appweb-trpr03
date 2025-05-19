@@ -40,22 +40,34 @@ const routes = [
   {
     path: '/testerManager',
     name: 'TesterManager',
-    component: TesterManager
+    component: TesterManager,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/devBugList',
     name: 'DevBugList',
-    component: DevBugList
+    component: DevBugList,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/testerBugList',
     name: 'TesterBugList',
-    component: TesterBugList
+    component: TesterBugList,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/addBugCategory',
     name: 'AddBugCategory',
-    component: AddBugCategory
+    component: AddBugCategory,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 

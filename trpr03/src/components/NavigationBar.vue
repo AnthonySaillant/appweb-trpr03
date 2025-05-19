@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { useAuthStore } from '../stores/authStore'
 import { useProfileStore } from '../stores/profileStore'
 import { useRouter } from 'vue-router'
-import { is } from '@vee-validate/rules'
 
 const authStore = useAuthStore()
 const profileStore = useProfileStore()
@@ -69,13 +68,12 @@ function logout() {
         </RouterLink>
 
         <RouterLink
-          v-else
           class="nav-link text-warning"
           :class="{ active: $route.name == 'TesterBugList' }"
           v-if="isLoggedIn && !isDev"
           :to="{ name: 'TesterBugList' }"
         >
-          bugs
+          Bugs
         </RouterLink>
 
         <RouterLink

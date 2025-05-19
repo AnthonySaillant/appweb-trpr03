@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import background from '../assets/ClashRoyaleBG.png'
 const backgroundStyle = {
   backgroundImage: `url(${background})`,
   backgroundSize: '90%',
@@ -9,9 +10,16 @@ const backgroundStyle = {
 </script>
 
 <template>
-  <div class="content-container">
-    <span class="title">404 - Cette page n'existe pas...</span>
+  <div :style="backgroundStyle">
+    <div class="content-container">
+      <h1 class="title text-white">404 - Cette page n'existe pas...</h1>
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.content-container {
+  margin: 0 auto;
+  text-align: center;
+}
+</style>
