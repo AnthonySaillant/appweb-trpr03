@@ -14,36 +14,27 @@ const profileStore = useProfileStore()
 const name = computed(() => profileStore.name)
 const email = computed(() => profileStore.email)
 const karma = computed(() => profileStore.karma)
-const isDev = computed(() => profileStore.isDev)
 const newPassword = ref('')
 const newPasswordValidation = ref('')
-const onError = computed(() => profileStore.onError)
+const isPasswordUpdated = ref(false)
+const isShowingErrorMessage = ref(false)
 
 const updatePassword = async () => {
   try {
     if (newPassword.value == newPasswordValidation.value) {
       await profileStore.updatePassword(newPassword.value)
-      alert('Mot de passe mis à jour avec succès.')
       newPassword.value = ''
       newPasswordValidation.value = ''
-    } else {
-      alert('Échec de la validation du mot de passe')
+      isPasswordUpdated.value = true
     }
   } catch (error) {
-    alert('Échec de la mise à jour du mot de passe.')
+    isPasswordUpdated.value = false
+    isShowingErrorMessage.value = true
   }
 }
 
 onMounted(async () => {
-  try {
-    await profileStore.getProfile()
-    if (onError.value) {
-      // Utilisation d'une boîte de dialogue au lieu de 'confirm'
-      confirm("Une erreur s'est produite lors de la récupération du profil de l'utilisateur.")
-    }
-  } catch (error) {
-    confirm("Erreur critique lors de l'accès au store.")
-  }
+  await profileStore.getProfile()
 })
 
 const isRequired = (value) => (!value ? 'Ce champ est requis.' : true)
@@ -104,6 +95,13 @@ const backgroundStyle = {
 
         <div class="d-grid">
           <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </div>
+
+        <div class="confirmation-text mt-3 mb-3 text-success" v-if="isPasswordUpdated">
+          Mot de passe changé avec succès!
+        </div>
+        <div class="confirmation-text mt-3 mb-3 text-success" v-if="isShowingErrorMessage">
+          Erreur lors du changement du mot de passe!
         </div>
       </Form>
     </div>

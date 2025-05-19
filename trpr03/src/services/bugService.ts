@@ -1,5 +1,6 @@
 import { parseAxiosError } from '../shared/parseAxiosError'
 import axiosAuth from '../shared/axiosAuth'
+import type { Bug } from '@/types'
 
 async function getBugById(bugId: any) {
   try {
@@ -60,10 +61,22 @@ async function verifyBug(bugId: number, newVerify: boolean) {
   }
 }
 
+async function saveNewPriority(bug: Bug) {
+  try {
+    const response = await axiosAuth.patch(`http://127.0.0.1:3000/bugs/${bug.id}`, {
+      priority: bug.priority
+    })
+    return response.data
+  } catch (error) {
+    throw parseAxiosError(error)
+  }
+}
+
 export const bugService = {
   getBugById,
   addBug,
   getAllBugs,
   verifyBug,
-  deleteBug
+  deleteBug,
+  saveNewPriority
 }

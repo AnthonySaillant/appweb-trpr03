@@ -63,7 +63,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
 
       const updatedBug = await bugService.verifyBug(bug.id, newVerify)
 
-      const index = allBugs.value.findIndex((b) => b.id === bug.id)
+      const index = allBugs.value.findIndex((b) => b.id === bug.id) //le find index par chat GPT
       if (index !== -1) {
         allBugs.value[index] = updatedBug
       }
@@ -73,6 +73,23 @@ export const useBugStore = defineStore('bugStoreId', () => {
       }
     } catch (error) {
       console.error('Erreur lors de la vérification du bug:', error)
+    }
+  }
+
+  async function saveNewPriority(bug: Bug) {
+    try {
+      const updatedBug = await bugService.saveNewPriority(bug)
+
+      const index = allBugs.value.findIndex((b) => b.id === bug.id)
+      if (index !== -1) {
+        allBugs.value[index] = updatedBug
+      }
+
+      if (currentBug.value?.id === bug.id) {
+        currentBug.value = updatedBug
+      }
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour de la priorité:', error)
     }
   }
 
@@ -98,6 +115,7 @@ export const useBugStore = defineStore('bugStoreId', () => {
     addBug,
     verifyBug,
     deleteBug,
-    addCategory
+    addCategory,
+    saveNewPriority
   }
 })

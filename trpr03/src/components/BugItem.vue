@@ -11,6 +11,7 @@ const props = defineProps<{
 }>()
 
 const karmaForGoodBugFound = ref(100)
+const isChangingPriority = ref(false)
 const bugImage = computed(() =>
   props.bug.image && props.bug.image.trim() !== '' ? props.bug.image : blue_king
 )
@@ -52,6 +53,10 @@ const closeFeedback = () => {
   removeKarmaToDevs()
 }
 
+const updatePriority = () => {
+  isChangingPriority.value = true
+}
+
 async function removeKarmaToDevs() {
   isLoading.value = true
   try {
@@ -60,6 +65,11 @@ async function removeKarmaToDevs() {
   } finally {
     isLoading.value = false
   }
+}
+
+async function saveNewPriority() {
+  isChangingPriority.value = false
+  await bugStore.saveNewPriority(props.bug)
 }
 
 const emit = defineEmits(['deleteRequest'])
@@ -82,6 +92,19 @@ function deleteRequest() {
     <p><strong>User ID:</strong> {{ bug.userId }}</p>
     <p><strong>Vérifié:</strong> {{ bug.isVerified ? 'Oui' : 'Non' }}</p>
 
+    <div v-if="!canVerify && !isChangingPriority">
+      <button class="btn btn-success mt-2" @click="updatePriority">Changer la priorité</button>
+    </div>
+
+    <div v-if="isChangingPriority" class="d-flex flex-column align-items-center gap-2 mt-3">
+      <label for="new-priority">Choisir une nouvelle priorité :</label>
+      <select id="new-priority" v-model="props.bug.priority" class="form-select w-auto mb-5">
+        <option value="Basse">Basse</option>
+        <option value="Moyenne">Moyenne</option>
+        <option value="Haute">Haute</option>
+      </select>
+      <button class="btn btn-primary mt-5" @click="saveNewPriority">Sauvegarder</button>
+    </div>
     <div v-if="canVerify" class="d-flex flex-column align-items-center gap-2">
       <button
         class="btn"
