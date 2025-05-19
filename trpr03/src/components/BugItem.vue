@@ -17,6 +17,7 @@ const bugImage = computed(() =>
 
 const bugStore = useBugStore()
 const profileStore = useProfileStore()
+const isFeedbackFinished = ref(false)
 
 const isLoading = ref(false)
 
@@ -28,7 +29,33 @@ async function addKarmaToUser() {
   isLoading.value = true
   try {
     const testerId = props.bug.userId
-    await profileStore.addKarmaToUser(testerId, karmaForGoodBugFound.value)
+    await profileStore.modifyKarma(testerId, karmaForGoodBugFound.value)
+  } catch (error) {
+  } finally {
+    isLoading.value = false
+  }
+}
+
+async function addKarmaToDevs() {
+  isFeedbackFinished.value = true
+  isLoading.value = true
+  try {
+    await profileStore.modifyDevsKarma(karmaForGoodBugFound.value)
+  } catch (error) {
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const closeFeedback = () => {
+  isFeedbackFinished.value = true
+  removeKarmaToDevs()
+}
+
+async function removeKarmaToDevs() {
+  isLoading.value = true
+  try {
+    await profileStore.modifyDevsKarma(-karmaForGoodBugFound.value)
   } catch (error) {
   } finally {
     isLoading.value = false
@@ -69,7 +96,16 @@ function deleteRequest() {
       </button>
     </div>
 
-    <div v-else-if="bug.isVerified" class="mt-3">
+    <div v-if="bug.isVerified && !isFeedbackFinished && !canVerify" class="mt-3">
+      <p>Êtes-vous satisfait du temps que cela a pris avant que le bug soit corrigé?</p>
+
+      <button class="btn btn-primary mt-2 mb-3" @click="addKarmaToDevs" :disabled="isLoading">
+        Oui (+100 karma au dev)
+      </button>
+      <button class="btn btn-danger" @click="closeFeedback">Non (-100 karma au dev)</button>
+    </div>
+
+    <div v-else-if="bug.isVerified && isFeedbackFinished" class="mt-3">
       <button class="btn btn-danger" @click="deleteRequest">Supprimer le bug</button>
     </div>
   </div>

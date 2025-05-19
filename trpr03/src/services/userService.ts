@@ -37,7 +37,7 @@ async function updateUserPassword(userId: number, newPassword: string) {
   }
 }
 
-async function addKarmaToUser(userId: number, newKarma: number) {
+async function modifyKarma(userId: number, newKarma: number) {
   try {
     const response = await axiosAuth.patch(`http://127.0.0.1:3000/users/${userId}`, {
       karma: newKarma
@@ -73,5 +73,5 @@ export const userService = {
   updateUserPassword,
   deleteUser,
   addUser,
-  addKarmaToUser
+  modifyKarma
 }

@@ -5,7 +5,8 @@
       "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
       "name": "Dev leDev",
       "isDev": true,
-      "id": 1
+      "id": 1,
+      "karma": 0
     },
     {
       "email": "test1@test1.com",
@@ -13,7 +14,7 @@
       "name": "Tester 1",
       "isDev": false,
       "id": 2,
-      "karma": 400
+      "karma": 100
     },
     {
       "email": "test2@test2.com",
@@ -65,9 +66,18 @@
       "title": "bug1",
       "description": "description1",
       "productionStep": "productioStep1",
-      "type": "Crash",
       "platform": "platform1",
       "priority": "priority1"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "bug2",
+      "description": "description2",
+      "productionStep": "productioStep2",
+      "platform": "platform2",
+      "priority": "priority2",
+      "isVerified": true
     },
     {
       "id": 3,
@@ -75,32 +85,8 @@
       "title": "bug3",
       "description": "description3",
       "productionStep": "productioStep3",
-      "type": "Crash",
       "platform": "platform3",
-      "priority": "priority3",
-      "isVerified": true
-    },
-    {
-      "userId": 2,
-      "title": "AA",
-      "description": "aa",
-      "productionStep": "aa",
-      "platform": "a",
-      "priority": "Medium",
-      "type": "Crash",
-      "image": "",
-      "id": 4
-    },
-    {
-      "userId": 2,
-      "title": "a",
-      "description": "a",
-      "productionStep": "a",
-      "platform": "a",
-      "priority": "Bas",
-      "type": "allo",
-      "image": "",
-      "id": 5
+      "priority": "priority3"
     }
   ]
 }

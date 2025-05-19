@@ -50,17 +50,33 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     }
   }
 
-  async function addKarmaToUser(userId: number, karmaToAdd: number) {
+  async function modifyKarma(userId: number, karmaToAdd: number) {
     try {
       onError.value = false
       const userProfile = await userService.getUserById(userId)
       const currentKarma = Number(userProfile.karma) || 0
 
       const newKarma = currentKarma + karmaToAdd
-      await userService.addKarmaToUser(userId, newKarma)
-
-      const authStore = useAuthStore()
+      await userService.modifyKarma(userId, newKarma)
       karma.value = newKarma
+    } catch (error) {
+      onError.value = true
+    }
+  }
+
+  async function modifyDevsKarma(karmaToAdd: number) {
+    try {
+      onError.value = false
+      const allUsers = await userService.getAllUsers()
+      const devUsers = allUsers.filter((user) => user.isDev) //chat GPT pour filtrer et trouver les devs
+
+      for (const dev of devUsers) {
+        const currentKarma = Number(dev.karma) || 0
+        const newKarma = currentKarma + karmaToAdd
+        await userService.modifyKarma(dev.id, newKarma)
+      }
+      console.log('All users:', allUsers)
+      console.log('Dev users:', devUsers)
     } catch (error) {
       onError.value = true
     }
@@ -74,7 +90,8 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     onError,
     getProfile,
     updatePassword,
-    addKarmaToUser,
+    modifyKarma,
+    modifyDevsKarma,
     isDev
   }
 })
