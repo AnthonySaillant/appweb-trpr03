@@ -2,26 +2,31 @@
   "users": [
     {
       "email": "mon@courriel.com",
-      "password": "$2a$10$EzEXPvGiP5DlI8dIHcHbxeUi9qcamBwYsBL.029OG4M0TTYVRlbx6",
+      "password": "$2a$10$7nMBZGFZuYzCGONyFGqF5.e7w/1XKE6oo04acdmU./ifKxpFGVRVC",
       "name": "Bruce Lee",
       "id": 1
     },
     {
       "email": "dev@dev.com",
-      "password": "$2a$10$7KLqd./ITbe1RFXfr0whqey6vMNrBfNIilpR1deMq5323aW.WEEAG",
+      "password": "$2a$10$DvC5QBh/xFbNE9wS7xa7iOECs.wAVLirCESgQ0Qb0f5EngADZXZeO",
       "name": "Dev leDev",
       "isDev": true,
       "id": 2
-    },
-    {
-      "email": "nouveau@testeur.com",
-      "password": "$2a$10$5RXY6bPo2RJMAH6JFsy1ruZbxCfXDLpX9y0B2pG4QVBPqQuy70pIW",
-      "name": "Nouveau Testeur",
-      "isDev": false,
-      "karma": 0,
-      "id": 3
     }
   ],
   "comments": [],
-  "bugs": []
+  "bugs": [
+    {
+      "userId": 1,
+      "title": "Bug à supprimer",
+      "description": "Bug à supprimer via test Cypress",
+      "productionStep": "Étapes pour reproduire",
+      "platform": "Web",
+      "priority": "Haute",
+      "type": "Crash",
+      "image": "",
+      "id": 1,
+      "isVerified": false
+    }
+  ]
 }

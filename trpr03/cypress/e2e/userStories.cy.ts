@@ -209,7 +209,7 @@ describe('Récits utilisateur', () => {
 
   //Tests de Dev
   it("je peux ajouter un testeur via le formulaire d'inscription", () => {
-    cy.login('dev@dev.com', 'test')
+    cy.login(dev.email, dev.password)
 
     cy.visit('/testerManager')
 
@@ -251,15 +251,97 @@ describe('Récits utilisateur', () => {
     cy.visit('/testerManager')
 
     cy.contains(testEmail)
-      .parent()
+      .closest('.card')
       .within(() => {
         cy.contains(/supprimer le testeur/i).click()
       })
 
+    cy.contains('Confirmer la suppression')
+    cy.contains('Supprimer').click()
+
     cy.contains(/déconnecter/i).click()
     cy.contains(/connexion/i).click()
-    cy.login(testEmail, testPassword)
+    cy.get('input[name="email-input"]').type(testEmail)
+    cy.get('input[name="password-input"]').type(testPassword)
+    cy.get('button[type="submit"]').click()
 
-    cy.contains(/identifiants invalides/i).should('exist')
+    cy.contains(/Une erreur est survenu/i).should('exist')
+  })
+
+  it('je peux ajouter une categorie et la sauvegarder', () => {
+    cy.login(dev.email, dev.password)
+
+    cy.visit('/addBugCategory')
+
+    const newBugType = 'Performance'
+
+    cy.get('input#category').type(newBugType)
+
+    cy.get('button[type="submit"]').click()
+
+    cy.contains('li.list-group-item', newBugType).should('be.visible')
+  })
+
+  it('je peux voir la liste de bogues', () => {
+    cy.login(user.email, user.password)
+
+    cy.visit('/testerBugList')
+
+    cy.get('input#title').type('Bug Cypress Test')
+    cy.get('input#description').type('Description du bug créé par Cypress')
+    cy.get('input#productionStep').type('Étape de test')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+
+    cy.get('button[type=submit]').click()
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i).click()
+
+    cy.login(dev.email, dev.password)
+
+    cy.visit('/devBugList')
+
+    cy.get('.card')
+      .should('exist')
+      .within(() => {
+        cy.contains(/Description:/i).should('exist')
+        cy.contains(/Platform:/i).should('exist')
+        cy.contains(/Priorité:/i).should('exist')
+      })
+
+    cy.get('.card').within(() => {
+      cy.contains(/vérifier le bug/i).should('exist')
+    })
+
+    cy.get('.card img.bug-image').should('be.visible')
+  })
+
+  it('je peux supprimer un bogue (indiquer comme résolu)', () => {
+    cy.login(user.email, user.password)
+    cy.visit('/testerBugList')
+
+    cy.get('input#title').type('Bug à supprimer')
+    cy.get('input#description').type('Bug à supprimer via test Cypress')
+    cy.get('input#productionStep').type('Étapes pour reproduire')
+    cy.get('input#platform').type('Web')
+    cy.get('select#priority').select('Haute')
+    cy.get('select#type').select('Crash')
+    cy.get('button[type=submit]').click()
+
+    cy.contains(/déconnecter/i).click()
+    cy.contains(/connexion/i).click()
+
+    cy.login(dev.email, dev.password)
+    cy.visit('/devBugList')
+
+    cy.contains('.card', 'Bug à supprimer').within(() => {
+      cy.contains('Vérifier le bug').click()
+    })
+
+    cy.contains('.card', 'Bug à supprimer').within(() => {
+      cy.contains('Dévérifier le bug').click()
+    })
   })
 })
